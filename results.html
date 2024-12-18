@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="results-container">
+    <h1>Game Over!</h1>
+    <h2 id="final-message"></h2>
+
+    <p><strong>Final XP:</strong> <span id="final-xp"></span></p>
+    <p><strong>Lives Left:</strong> <span id="final-lives"></span></p>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+
+  <script>
+    // Get Results from Local Storage
+    const finalXP = localStorage.getItem("finalXP") || 0;
+    const finalLives = localStorage.getItem("finalLives") || 0;
+
+    document.getElementById("final-xp").textContent = finalXP;
+    document.getElementById("final-lives").textContent = finalLives;
+
+    // Show Custom Message Based on Score
+    const message = document.getElementById("final-message");
+ if (finalXP >= 100) {
+      message.textContent = "Congratulations! You are a true master of knowledge!";
+    } else if (finalXP >= 50) {
+      message.textContent = "Good Job! You're on the way to greatness!";
+    } else if (finalLives > 0) {
+      message.textContent = "You made it! Try again for a perfect score!";
+    } else {
+      message.textContent = "Better luck next time! Practice makes perfect!";
+    }
+
+    // Restart the Game
+    function restartGame() {
+      localStorage.clear();
+      window.location.href = "game.html";
+    }
+  </script>
+</body>
+</html>
