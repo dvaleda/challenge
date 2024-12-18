@@ -1,0 +1,34 @@
+/* Results Page Styling */
+#results-container {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+#results-container h1 {
+  font-size: 48px;
+  color: #ff5722;
+}
+
+#results-container h2 {
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+#results-container p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e64a19;
+}
