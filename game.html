@@ -1,0 +1,47 @@
+/ Redirect to Results Page
+function showResults() {
+  localStorage.setItem("finalXP", xp);
+  localStorage.setItem("finalLives", lives);
+  window.location.href = "results.html";
+}
+
+// Check If Game is Complete
+function loadQuestion() {
+  if (currentQuestion >= questions.length) {
+    showResults();  // Game Completed
+    return;
+  }
+
+  const q = questions[currentQuestion];
+  document.querySelector("#question").textContent = q.question;
+
+  if (q.image) {
+    const img = document.querySelector("#image");
+    img.src = q.image;
+    img.style.display = "block";
+  } else {
+    document.querySelector("#image").style.display = "none";
+  }
+
+  document.querySelector("#answer").value = "";
+  document.querySelector("#result").textContent = "";
+}
+function submitAnswer() {
+  const userAnswer = document.querySelector("#answer").value.trim().toLowerCase();
+  const correctAnswer = questions[currentQuestion].answer.toLowerCase();
+
+  if (userAnswer === correctAnswer) {
+    xp += 10;
+    currentQuestion++;
+    updateXP();
+    loadQuestion();
+  } else {
+    lives--;
+    updateLives();
+    document.querySelector("#result").textContent = "Incorrect! Try again.";
+    
+    if (lives === 0) {
+      showResults();  // Game Over
+    }
+  }
+}
